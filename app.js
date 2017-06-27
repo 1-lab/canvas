@@ -5,7 +5,7 @@ var ejs = require('ejs')
 var fs = require('fs')
 
 var app = express();
-app.use(app.router);
+# app.use(app.router);
 app.use(express.static('public'));
 
 var server = http.createServer(app);
