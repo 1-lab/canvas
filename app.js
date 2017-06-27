@@ -31,7 +31,7 @@ app.get('/canvas/:room', function (request, response) {
 });
 
 app.get('/room', function (request, response) {
-  response.send(io.sockets.manager.room);
+  response.send(io.sockets.manager.rooms);
 });
 
 io.sockets.on('connection', function (socket) {
