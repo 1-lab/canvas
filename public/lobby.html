@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lobby Page</titile>
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Ajax
+      $.getJSON('/room', function (data) {
+        $.each(data, function (index, item) {
+          $('<button></button>').attr({
+            'data-room': item
+          }).text('Room Number: ' + item).button().appendTo('#container');
+        });
+      });
+      
+      // Socket
+      var socket = io.connect();
+      socket.on('create_room', function (data) {
+        $('<button></button>').attr({
+          'data-room': data
+        }).text('Room Number: ' + data).appendTo('#container');
+      });
+      
+      // Event
+      $(document).on('#container >button', 'click', function () {
+        var room = $(this).attr('data-room');
+        // move page
+        location = 'canvas' + room;
+      });
+      
+      $('body > button').click(function () {
+        var room = $('#room').val();
+        // create socket event
+        socket.emit('create_room', room);
+        // move page
+        location = 'canvas' + room;
+      });
+    });
+  </script>
+</head>
+<body>
+  <h1>Rint Real Time Canvas</h1>
+  <p>Connect Web Server With Socket.io</p>
+  <span>ROOM: </span>
+  <input id="room" />
+  <button>CREATE ROOM</button>
+  <hr />
+  <div id="container">
+    
+  </div>
+</body>
+</html>
