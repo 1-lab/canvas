@@ -24,10 +24,10 @@
       });
       
       // Event
-      $(document).on('#container >button', 'click', function () {
+      $(document).on('#container > button', 'click', function () {
         var room = $(this).attr('data-room');
         // move page
-        location = 'canvas' + room;
+        location = '/canvas/' + room;
       });
       
       $('body > button').click(function () {
@@ -35,7 +35,7 @@
         // create socket event
         socket.emit('create_room', room);
         // move page
-        location = 'canvas' + room;
+        location = '/canvas/' + room;
       });
     });
   </script>
