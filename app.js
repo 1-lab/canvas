@@ -24,8 +24,8 @@ app.get('/', function (request, response) {
 
 app.get('/canvas/:room', function (request, response) {
   fs.readFile('canvas.html', 'utf8', function (error, data) {
-    response.send(ejs.render(data, {
-      room: request.param('room');
+    response.send(ejs.render(data), {
+      room: request.param('room')
     });
   });
 });
