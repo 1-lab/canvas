@@ -41,9 +41,7 @@ io.sockets.on('connection', function (socket) {
   });
   
   socket.on('draw', function (data) {
-    socket.get('room', function (error, room) {
-      io.sockets.in(room).emit('line', data);
-    });
+    io.sockets.in(socket.room).emit('line', data);
   });
   
   socket.on('create_room', function (data) {
