@@ -14,7 +14,7 @@ server.listen(52273, function () {
 });
 
 var io = socketio.listen(server);
-io.set('log level', 2);
+//io.set('log level', 2);
 
 app.get('/', function (request, response) {
   fs.readFile('lobby.html', function (error, data) {
