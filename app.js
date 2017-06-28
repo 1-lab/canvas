@@ -37,7 +37,7 @@ app.get('/room', function (request, response) {
 io.sockets.on('connection', function (socket) {
   socket.on('join', function (data) {
     socket.join(data);
-    socket.set('room', data);
+    socket.set.room = data;
   });
   
   socket.on('draw', function (data) {
